@@ -1,5 +1,7 @@
 package problem;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 public class P0349Test {
@@ -10,8 +12,10 @@ public class P0349Test {
         int[] nums2 = {2,2};
         P0349IntersectionOfTwoArrays test = new P0349IntersectionOfTwoArrays();
         int[] result = test.intersection(nums1,nums2);
-        assert result.length==1;  
-        assert result[0]==2;
+        int[] answer = {2};
+        Arrays.sort(result);
+        Arrays.sort(answer);
+        assert Arrays.equals(result, answer);
 	}
 	
 	@Test
@@ -20,7 +24,9 @@ public class P0349Test {
 		int[] nums2 = {9,4,9,8,4};
 		P0349IntersectionOfTwoArrays test = new P0349IntersectionOfTwoArrays();
         int[] result = test.intersection(nums1,nums2);
-        assert result.length==2;
-        assert (result[0]==9&&result[1]==4)||(result[0]==4&&result[1]==9); 
+        int[] answer = {4,9};
+        Arrays.sort(result);
+        Arrays.sort(answer);
+        assert Arrays.equals(result, answer); 
 	}
 }

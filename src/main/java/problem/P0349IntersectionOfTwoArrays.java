@@ -2,6 +2,14 @@ package problem;
 
 import java.util.*;
 
+
+/**
+ * Given two arrays, write a function to compute their intersection.
+ * 
+ * Each element in the result must be unique.
+   The result can be in any order.
+ *
+ */
 public class P0349IntersectionOfTwoArrays {
 
     public int[] intersection(int[] nums1, int[] nums2) {
