@@ -5,13 +5,31 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class MyCollectionUtil {
+import model.TreeNode;
 
-	public static boolean listEqualsArray(List<Integer> list1, int[] array) {
+public class MyCollectionUtil {
+	
+	public static TreeNode createBinaryTreeByArray(Integer[] array,int index)
+    {
+        TreeNode tn = null;
+        if (index<array.length) {
+            Integer value = array[index];
+            if (value == null) {
+                return null;
+            }
+            tn = new TreeNode(value);
+            tn.left = createBinaryTreeByArray(array, 2*index+1);
+            tn.right = createBinaryTreeByArray(array, 2*index+2);
+            return tn;
+        }
+        return tn;
+    }
+
+	public static <T> boolean listEqualsArray(List<T> list1, T[] array) {
 		if(list1.size()!=array.length) {
 			return false;
 		}
-		List<Integer> list2 = Arrays.stream(array).boxed().collect(Collectors.toList());
+		List<T> list2 = Arrays.asList(array);
 		for(int i=0; i<list1.size(); i++) {
 			if(!list1.get(i).equals(list2.get(i))) {
 				return false;
@@ -20,11 +38,23 @@ public class MyCollectionUtil {
 		return true;
 	}
 	
-	
 	public static <T> boolean listEquals(List<T> list1, List<T> list2) {
 		if(list1.size()!=list2.size()) {
 			return false;
 		}
+		for(int i=0; i<list1.size(); i++) {
+			if(!list1.get(i).equals(list2.get(i))) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean listEqualsArray(List<Integer> list1, int[] array) {
+		if(list1.size()!=array.length) {
+			return false;
+		}
+		List<Integer> list2 = Arrays.stream(array).boxed().collect(Collectors.toList());
 		for(int i=0; i<list1.size(); i++) {
 			if(!list1.get(i).equals(list2.get(i))) {
 				return false;
